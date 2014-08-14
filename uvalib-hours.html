@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../uvalib-libraries/uvalib-libraries.html">
 
 <!--
 Element providing the hours of operation for the Library.
@@ -12,38 +13,23 @@ Element providing the hours of operation for the Library.
 @status alpha
 @homepage http://uvalib-components.github.io/uvalib-hours
 -->
-<polymer-element name="uvalib-hours" attributes="">
+<polymer-element name="uvalib-hours" extends="uvalib-libraries" attributes="library">
 
   <template>
-
+    <uvalib-libraries listing="{{listing}}" library="{{library}}"></uvalib-libraries>
   </template>
 
   <script>
 
     Polymer('uvalib-hours', {
       /**
-       * The `author` attribute sets an initial author
+       * The `library` attribute sets the libraries to get hours for
        * 
-       * @attribute author
-       * @type string
-       * @default 'Dimitri Glazkov'
+       * @attribute library
+       * @type string (optional, space seperated)
+       * @default ''
        */
-      author: 'Dimitri Glazkov',
-      
-      /**
-       * `fancy` is a property that does something fancy.
-       * 
-       * @property fancy
-       * @type bool
-       * @default false
-       */
-      fancy: false,
-
-      ready: function() {
-        // Ready is a lifecycle callback.
-        // You can do setup work in here.
-        // More info: http://www.polymer-project.org/docs/polymer/polymer.html#lifecyclemethods
-      },
+      library: '',
 
       /**
        * The `sayHello` method will return a greeting.
