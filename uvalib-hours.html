@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../uvalib-libraries/uvalib-libraries.html">
+<link rel="import" href="../google-calendar-events/google-calendar-events.html">
 
 <!--
 Element providing the hours of operation for the Library.
@@ -13,51 +14,31 @@ Element providing the hours of operation for the Library.
 @status alpha
 @homepage http://uvalib-components.github.io/uvalib-hours
 -->
-<polymer-element name="uvalib-hours" extends="uvalib-libraries" attributes="listing library">
+<polymer-element name="uvalib-hours" extends="uvalib-libraries" attributes="listing library startDateTime endDateTime">
 
+  <template>
+    <template repeat="{{lib in listing}}">
+      <template if="{{lib.hoursCalendar}}">
+        <google-calendar-events
+                  id="{{lib.id}}"
+                  calendarId="{{lib.hoursCalendar}}"
+                  startTime="2014-08-04"
+                  endTime="2014-08-11">
+        </google-calendar-events>
+      </template>
+    </template>
+  </template>
   <script>
 
     Polymer('uvalib-hours', {
-      /**
-       * The `library` attribute sets the libraries to get hours for
-       * 
-       * @attribute library
-       * @type string (optional, space seperated)
-       * @default ''
-       */
-      library: '',
-
-      /**
-       * The `sayHello` method will return a greeting.
-       * 
-       * @method sayHello
-       * @param {String} greeting Pass in a specific greeting.
-       * @return {String} Returns a string greeting.
-       */
-      sayHello: function(greeting) {
-        var response = greeting || 'Hello World!';
-        return 'seed-element says, ' + response;
+      ready: function(){
+        this.addEventListener('libraries-response', function(){
+          this.getHours();
+        });
       },
-
-      /**
-       * The `seed-element-lasers-success` event is fired whenever we
-       * call fireLasers.
-       * 
-       * @event seed-element-lasers-success
-       * @param {Object} detail
-       *   @param {string} detail.sound An amazing sound.
-       */
-
-      /**
-       * The `fireLasers` method will fire the lasers. At least
-       * it will dispatch an event that claims lasers were fired :)
-       * 
-       * @method fireLasers
-       */
-      fireLasers: function() {
-        this.fire('seed-element-lasers-success', { sound: 'Pew pew pew!' });
+      getHours: function(){
+        
       }
-
     });
 
   </script>
