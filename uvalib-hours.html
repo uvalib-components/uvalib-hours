@@ -21,9 +21,10 @@ Element providing the hours of operation for the Library.
       <template if="{{lib.hoursCalendar}}">
         <google-calendar-events
                   id="{{lib.id}}"
+                  maxResults="2500"
                   calendarId="{{lib.hoursCalendar}}"
-                  startTime="2014-08-04"
-                  endTime="2014-08-11">
+                  singleEvents year
+                  on-calendar-response="{{bindResults}}">
         </google-calendar-events>
       </template>
     </template>
@@ -31,6 +32,8 @@ Element providing the hours of operation for the Library.
   <script>
 
     Polymer('uvalib-hours', {
+      
+/*
       ready: function(){
         this.addEventListener('libraries-response', function(){
           this.getHours();
@@ -38,7 +41,19 @@ Element providing the hours of operation for the Library.
       },
       getHours: function(){
         
+      },
+*/
+
+      bindResults: function(e, cal){
+        var libid = e.target.id;
+        for (var i=0; i<this.listing.length; i++) {
+          if (this.listing[i].id == libid) {
+            this.listing[i].cal = cal;
+            break;
+          }
+        }
       }
+
     });
 
   </script>

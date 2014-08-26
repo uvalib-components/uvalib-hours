@@ -55,18 +55,16 @@ core-list {
 
   <template is="auto-binding">
       <uvalib-hours listing="{{listing}}"></uvalib-hours>
-      <core-list id="list" data="{{listing}}" height="80">
-        <template>
+<!--      <core-list id="list" data="{{listing}}" height="80"> -->
+        <template repeat="{{listing}}">
           <div class="item {{ {selected: selected} | tokenList }}">
               <div class="library" style="background-image: url({{thumb}});">
-                  <span class="name">{{name}}</span>
-                  <span class="type">{{type}}</span>
-                  <div class="phone">{{phone}}</div>
-                  <div class="body">{{desc}}</div>
+                  <span class="name">{{name}}</span><br />
+                  <span class="cal">{{cal.events? cal.events.length+' hours events':''}}</span>
               </div>
             </div>
         </template>
-      </core-list>
+<!--      </core-list> -->
   </template>
 
 </body>
