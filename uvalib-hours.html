@@ -33,11 +33,17 @@ Element providing the hours of operation for the Library.
 
     Polymer('uvalib-hours', {
 
+      /**
+       * Fired when a calendar has been fetched.
+       *
+       * @event calendar-update
+       */
       bindResults: function(e, cal){
         var libid = e.target.id;
         for (var i=0; i<this.listing.length; i++) {
           if (this.listing[i].id == libid) {
             this.listing[i].cal = cal;
+            this.fire('calendar-update', {id:libid});
             break;
           }
         }
