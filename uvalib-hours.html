@@ -62,6 +62,11 @@ Element providing the hours of operation for the Library.
 
         for (var i=0; i<365; i++) {  // make a calendar for a year out
           var ev = {id:day.format('L'), events:[]};
+
+          ev.label = (day.isSame(moment().zone(this.tz),'day'))?
+                        "Today": day.format("dddd");
+          ev.label += " "+day.format("M/DD");
+
           while (eventStack.length>0 && 
                  ( (eventStack[0].start.dateTime && 
                     moment(eventStack[0].start.dateTime).parseZone().isSame(day,'day')) || 
@@ -109,7 +114,7 @@ Element providing the hours of operation for the Library.
                       "Open at "+day.start+" (Begin 24 Hours)":
                       (day.endsday && tomorrow.startsday)?
                         "Open at "+day.start:
-                        day.start+" - "+day.end;       
+                        day.start+" - "+day.end; 
 
           yesterday = (day)? day: {allday: false, startsday: false, endsday: false};
         }
