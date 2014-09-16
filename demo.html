@@ -9,62 +9,22 @@
   <link rel="import" href="../core-list/core-list.html">
 
 <style>
-core-list {
-      height: 100%;
-    }
 
-    .item {
-      box-sizing: border-box;
-      height: 80px;
-      border-bottom: 1px solid #ddd;
-      padding: 4px;
-      cursor: default;
-      background-color: white;
-      overflow: hidden;
-    }
-
-    .selected {
-      background: silver;
-    }
-
-    .library {
-      padding-left: 77px;
-      line-height: 167%;
-      background-repeat: no-repeat;
-      background-position: 10px 10px;
-      background-size: 60px;
-    }
-    
-    .name {
-      display: inline;
-      font-weight: bold;
-    }
-    
-    .type {
-      margin-left: 10px;
-      font-size: 12px;
-      opacity: 0.8;
-    }
-    
-    .body {
-      font-size: 12px;
-    }
 </style>
 </head>
 <body unresolved>
 
   <template is="auto-binding">
-      <uvalib-hours listing="{{listing}}"></uvalib-hours>
-<!--      <core-list id="list" data="{{listing}}" height="80"> -->
-        <template repeat="{{listing}}">
-          <div class="item {{ {selected: selected} | tokenList }}">
-              <div class="library" style="background-image: url({{thumb}});">
-                  <span class="name">{{name}}</span><br />
-                  <span class="cal">{{cal.events? cal.events.length+' hours events':''}}</span>
-              </div>
-            </div>
-        </template>
-<!--      </core-list> -->
+
+    <uvalib-hours calendarId="7jh4d881ba11icf34ld2jbrd34@group.calendar.google.com" events="{{events}}" calendar="{{calendar}}"></uvalib-hours>
+    <div>{{events.length}} Events from Google Calendar</div>
+    <div>{{calendar.length}} Days in the created calendar</div>
+    <ul>
+    <template repeat="{{ calendar}}">
+      <li>{{ id }} -> {{ text }}</li>
+    </template>
+    </ul>
+
   </template>
 
 </body>

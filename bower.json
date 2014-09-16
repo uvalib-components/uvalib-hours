@@ -16,6 +16,7 @@
     "polymer": "Polymer/polymer#~0.3.4",
     "polymer-test-tools": "Polymer/polymer-test-tools#~0.3.3",
     "uvalib-libraries": "uvalib-components/uvalib-libraries",
-    "google-calendar-events":"uvalib-components/google-calendar-events"
+    "google-calendar-events": "uvalib-components/google-calendar-events",
+    "moment": "~2.8.1"
   }
 }
